@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenzie Empresas - Página do Usuario</title>
+    <script defer src="../../scripts/api.js"></script>
+    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="../../style/globalStyles.css">
+</head>
+
+<body>
+    <header>
+        <span class="container">
+            <div>
+                <span id="purple-icon"></span>
+                <h2>Kenzie Empresas</h2>
+            </div>
+            <div id="header-buttons">
+                <a href="" class="bttn-white">Logout</a>
+            </div>
+        </span>
+    </header>
+    <main>
+        <section id="user-infos-section">
+            <div id=user-infos>
+                <span id="user-name"></span>
+                <div id="user-details"></div>
+            </div>
+            <span id="edit-user">
+                <img id='edit-icon' src="../../src/edit-icon.png" alt="">
+            </span>
+        </section>
+        <section id="user-companie-info">
+
+        </section>
+        <article id="edit-profile-modal" class="hide">
+            <img id="close-edit-profile" src="../../src/closeBTTN.png" alt="">
+            <h2>Editar Perfil</h2>
+            <form>
+                <input type="text" name="username" id="username" placeholder="Seu nome">
+                <input type="email" name="email" id="email" placeholder="Seu email">
+                <input type="password" name="password" id="password" placeholder="Sua senha">
+            </form>
+            <button class="bttn-brand" id="edit-profile-bttn">Salvar Alterações</button>
+        </article>
+    </main>
+
+</body>
+
+</html>

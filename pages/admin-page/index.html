@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenzie Empresas - Página do Admin</title>
+    <script defer src="../../scripts/api.js"></script>
+    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="../../style/globalStyles.css">
+</head>
+
+<body>
+    <header>
+        <span class="container">
+            <div>
+                <span id="purple-icon"></span>
+                <h2>Kenzie Empresas</h2>
+            </div>
+            <div id="header-buttons">
+                <a href="" class="bttn-white">Logout</a>
+            </div>
+        </span>
+    </header>
+    <main>
+        <section id="departments-section">
+            <div id="departments-header">
+                <h3>Departamentos</h3>
+                <select name="companies" id="companies-select">
+                    <option value="" selected disabled>Selecionar Empresa</option>
+                </select>
+                <button id="create-department"><img src="../../src/add-BTTN.png" alt="">Criar</button>
+            </div>
+            <ul id="departments-list">
+            </ul>
+        </section>
+        <section id="users-section">
+            <div>
+                <h3>Usuários Cadastrados</h3>
+            </div>
+            <ul id="users-list">                
+            </ul>
+        </section>
+    </main>
+
+</body>
+
+</html>

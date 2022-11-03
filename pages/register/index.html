@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenzie Empresas - Cadastro</title>
+    <script defer src="../../scripts/api.js"></script>
+    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="../../style/globalStyles.css">
+</head>
+
+<body>
+    <header>
+        <span class="container">
+            <div>
+                <span id="purple-icon"></span>
+                <h2>Kenzie Empresas</h2>
+            </div>
+            <div id="header-buttons">
+                <a href="" class="bttn-white">Home</a>
+                <a href="" class="bttn-brand">Login</a>
+            </div>
+        </span>
+    </header>
+    <main>
+        <section id="register-form-box">
+            <h1>Cadastre-se</h1>
+            <form id="register-form">
+                <input required placeholder="Seu nome" type="text" name="name" id="username">
+                <input required placeholder="Seu email" type="email" name="email" id="email">
+                <input required placeholder="Sua senha" type="password" name="password" id="password">
+                <select placeholder="teste" name="graduation" id="professional_level">
+                    <option selected disabled value="">Nível Profissional</option>
+                    <option value="junior">Junior</option>
+                    <option value="pleno">Pleno</option>
+                    <option value="sênior">Sênior</option>
+                </select>                
+                <button class="bttn-brand" id="register-bttn">Cadastre-se</button>
+            </form>
+            <a href="../home/index.html" class="bttn-white">Retornar</a>
+        </section>
+    </main>
+
+</body>
+
+</html>
