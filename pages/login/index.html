@@ -8,19 +8,28 @@
     <title>Kenzie Empresas - Login</title>
     <script defer src="../../scripts/api.js"></script>
     <script defer src="./script.js"></script>
+    <script defer src="../../scripts/toastfy.js"></script>
+    <script defer src="../../scripts/style.js"></script>
     <link rel="stylesheet" href="../../style/globalStyles.css">
+    <link rel="stylesheet" href="../../style/buttons.css">
+    <link rel="stylesheet" href="../../style/header.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
 </head>
 
 <body>
     <header>
         <span class="container">
-            <div>
-                <span id="purple-icon"></span>
+            <div id="header-logo">
+                <div id="purple-icon"></div>
                 <h2>Kenzie Empresas</h2>
             </div>
             <div id="header-buttons">
-                <a href="" class="bttn-white">Home</a>
-                <a href="" class="bttn-brand">Cadastro</a>
+                <img id='drop-menu' src="../../src/burg.svg" alt="">
+                <span id="nav-buttons">                    
+                <a href="../home/index.html" class="bttn-white">Home</a>
+                <a href="../register/index.html" class="bttn-brand">Cadastro</a>
+                </span>
             </div>
         </span>
     </header>
@@ -33,7 +42,7 @@
                 <button class="bttn-brand" id="login-bttn">Login</button>
             </form>
             <h6>ou</h6>
-            <a href="../home/index.html" class="bttn-white">Cadastre-se</a>
+            <a id='register-bttn' href="../register/index.html" class="bttn-white">Cadastre-se</a>
         </section>
     </main>
 

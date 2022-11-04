@@ -1,7 +1,14 @@
+logout()
+
+const userTypeVerify = async () =>{
+    await userTypeVerification()
+}
+userTypeVerify()
+
+
 async function fillUserInfos () {
     let userProfile = await getUserProfile()
     const userInfos = document.getElementById('user-infos')
-    const userDetails = document.getElementById('user-details')
     userInfos.innerHTML = ''
     userInfos.insertAdjacentHTML('beforeend', `
         <span id="user-name">${userProfile.username}</span>
@@ -9,6 +16,7 @@ async function fillUserInfos () {
             <p>Email: ${userProfile.email}</p>
         </div>
     `)
+    const userDetails = document.getElementById('user-details')
     if (userProfile.professional_level) {
         userDetails.insertAdjacentHTML('beforeend', `
             <p>${userProfile.professional_level}</p>
@@ -23,37 +31,39 @@ async function fillUserInfos () {
 fillUserInfos()
 
 async function fillCompAndDepartmentTeam() {
+    let coWorkers = [...await getUserCoWorkers()]
     const companieSection = document.getElementById('user-companie-info')
-    let coWorkers = await getUserCoWorkers()
-    if (coWorkers = []) {
+    if (coWorkers.length == 0) {
+        console.log('teste');
         companieSection.insertAdjacentHTML('beforeend', `
+        <div id='notWorking-box'>
         <p id='notWorking'>Você ainda não foi contratado</p>
+        </div>
         `)
-    }
-    else{
+    }else{
         companieSection.insertAdjacentHTML('beforeend', `
         <div id='companie-section-header'>
-            <h2>${coWorkers.name} - ${coWorkers.description}</h2>
+            <h2>${coWorkers[0].name} - ${coWorkers[0].description}</h2>
         </div>
         `)
         companieSection.insertAdjacentHTML('beforeend', `
         <ul id='users-container'></ul>
         `)
         const usersContainer = document.getElementById('users-container')
-        let coWorkersList = coWorkers.users
+        let coWorkersList = coWorkers[0].users
         coWorkersList.map(user => {
             usersContainer.insertAdjacentHTML('beforeend', `
                 <li>
-                <p>${user.username}</p>
-                <p>${user.professional_level}</p>
+                <p class='coworker-name'>${user.username}</p>
+                <p class='coworker-level'>${user.professional_level}</p>
                 </li>
             `)
         })
     }
 }
+fillCompAndDepartmentTeam()
 
-
-async function editUser() {
+async function editUserr() {
     const editProfileModal = document.getElementById('edit-profile-modal')
     const editIcon = document.getElementById('edit-icon')
     const closeModal = document.getElementById('close-edit-profile')
@@ -62,6 +72,8 @@ async function editUser() {
 
     editIcon.addEventListener('click', ()=>{
         editProfileModal.classList.remove('hide')
+        editProfileModal.classList.add('flex')
+        lockScroll()
         editProfileForm.reset()
     })
 
@@ -81,11 +93,15 @@ async function editUser() {
             await editProfile(body)
             fillUserInfos()
             editProfileModal.classList.add('hide')
+            editProfileModal.classList.remove('flex')
+            unlockScroll()
         })
 
 
     closeModal.addEventListener('click', ()=>{
         editProfileModal.classList.add('hide')
+        editProfileModal.classList.remove('flex')
+        unlockScroll()
     })
 }
-editUser()
+editUserr()

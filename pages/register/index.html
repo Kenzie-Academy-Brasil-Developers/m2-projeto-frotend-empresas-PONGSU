@@ -8,19 +8,27 @@
     <title>Kenzie Empresas - Cadastro</title>
     <script defer src="../../scripts/api.js"></script>
     <script defer src="./script.js"></script>
+    <script defer src="../../scripts/toastfy.js"></script>
+    <script defer src="../../scripts/style.js"></script>
     <link rel="stylesheet" href="../../style/globalStyles.css">
+    <link rel="stylesheet" href="../../style/buttons.css">
+    <link rel="stylesheet" href="../../style/header.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <header>
         <span class="container">
-            <div>
-                <span id="purple-icon"></span>
+            <div id="header-logo">
+                <div id="purple-icon"></div>
                 <h2>Kenzie Empresas</h2>
             </div>
             <div id="header-buttons">
-                <a href="" class="bttn-white">Home</a>
-                <a href="" class="bttn-brand">Login</a>
+                <img id='drop-menu' src="../../src/burg.svg" alt="">
+                <span id="nav-buttons">                    
+                <a href="../home/index.html" class="bttn-white">Home</a>
+                <a href="../login/index.html" class="bttn-brand">Login</a>
+                </span>
             </div>
         </span>
     </header>
@@ -33,13 +41,14 @@
                 <input required placeholder="Sua senha" type="password" name="password" id="password">
                 <select placeholder="teste" name="graduation" id="professional_level">
                     <option selected disabled value="">Nível Profissional</option>
-                    <option value="junior">Junior</option>
-                    <option value="pleno">Pleno</option>
+                    <option value="estágio">Estagio</option>
+                    <option value="júnior">Júnior</option>
                     <option value="sênior">Sênior</option>
+                    <option value="pleno">Pleno</option>
                 </select>                
                 <button class="bttn-brand" id="register-bttn">Cadastre-se</button>
             </form>
-            <a href="../home/index.html" class="bttn-white">Retornar</a>
+            <a id='home-bttn' href="../home/index.html" class="bttn-white">Retornar</a>
         </section>
     </main>
 

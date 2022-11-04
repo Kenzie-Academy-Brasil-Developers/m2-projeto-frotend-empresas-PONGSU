@@ -2,12 +2,15 @@ const loginBttn = document.getElementById('login-bttn')
 
 const loginForm = document.querySelector('form')
 const loginFormElements = [...loginForm.elements]
+setTimeout(() => {	
+loginForm.reset()
+}, 30);
 
 loginForm.addEventListener("submit", async (e) => {
     // verifyInputs()
 		e.preventDefault()
-		// registerBttn.innerHTML = '<img id="spiner" src="../../src/spinnerspiner.svg" alt="">'
-		// registerBttn.style.height = '40px'
+		loginBttn.innerHTML = '<img id="spiner" src="../../src/spinnerspiner.svg" alt="">'
+		loginBttn.style.height = '52px'
 		const body = {}
 
 		loginFormElements.forEach((elem) => {

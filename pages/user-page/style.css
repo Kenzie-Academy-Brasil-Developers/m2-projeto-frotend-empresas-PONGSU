@@ -1,0 +1,144 @@
+#user-infos-section {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    padding: 13px 23px 23px 23px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#user-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 80%
+}
+
+#user-details {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#user-name {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+}
+
+#edit-icon {
+    height: 23px;
+}
+
+#notWorking-box{
+    background: #F8F8F8;
+    border: 1px solid #A8A8A8;
+    height: 367px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 40px;
+    padding: 20px;
+}
+
+#companie-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    color: var(--white);
+    background-color: var(--brand100);
+}
+
+#users-container {
+    background-color: #F8F8F8;
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 23px;
+}
+
+#users-container li {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    border: 1px solid var(--brand100);
+    width: 190px;
+    min-width: 190px;
+    height: 73px;
+    padding: 10px 13px;
+}
+
+.coworker-name {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.coworker-level {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+#edit-profile-modal{
+    background-color: rgba(70, 35, 167, 0.356);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 18;
+}
+
+#edit-profile-modal div{
+    position: absolute;
+    padding: 40px 30px;
+    background-color: var(--white);
+    width: 400px;
+}
+
+#close-edit-profile{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#edit-profile-modal div h2{
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 60px;
+}
+
+#edit-profile-modal div form{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-bottom: 13px;
+}
+
+#edit-profile-modal div form input{
+    height: 47px;
+    padding-left: 13px;
+}
+
+#edit-profile-modal div button{
+    width: 100%;
+    height: 47px;
+}
+
+.hide{
+    display: none;
+}
+
+.flex{
+    display: flex;
+}

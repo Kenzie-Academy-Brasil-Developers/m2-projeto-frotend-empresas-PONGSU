@@ -1,5 +1,28 @@
 let compList = []
-let sectors = ['Alimenticio', 'Varejo', 'Textil', 'Manufatura', 'Aeroespacial', 'Automotiva', 'TI', 'Atacado']
+let compList2 = []
+let sectors = []
+
+const getSectors = async () => {
+    try {
+        const request = await fetch('http://localhost:6278/sectors', {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer null',
+            },
+        });
+
+        if (request.ok) {
+            const response = await request.json();            
+            sectors = response
+            return sectors
+        } else {
+            toastfy('fail', 'OPS! Algo deu errado')
+        }
+    } catch (err) {
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
+    }
+}
+
 
 const getCompanies = async () => {
     try {
@@ -16,14 +39,36 @@ const getCompanies = async () => {
             compList = response
             return compList
         } else {
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
 getCompanies()
+
+const getCompaniesBySector = async (sector) => {
+    try {
+        const request = await fetch(`http://localhost:6278/companies/${sector}`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer null',
+            },
+        });
+
+        if (request.ok) {
+            const response = await request.json();
+            localStorage.setItem("compList", JSON.stringify(response));
+            compList2 = response
+            return compList2
+        } else {
+            toastfy('fail', 'OPS! Algo deu errado')
+        }
+    } catch (err) {
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
+    }
+}
 
 const registerUser = async (body) => {
     try {
@@ -37,18 +82,21 @@ const registerUser = async (body) => {
 
         if (request.ok) {
             const response = await request.json();
-            console.log(await response);
-            console.log('CADASTRO CONCLUÍDO');
-            // setTimeout(() => {
-            //     window.location.replace("../login/index.html");
-            //   }, 1300);
+            toastfy('ok', 'Usuário cadastrado! Você sera direcionado a página de login.')
+            setTimeout(() => {
+                window.location.replace("../login/index.html");
+            }, 4300);
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            const response = await request.json();
+            console.log(response.error);
+            if (response.error == 'email alread exists!') {
+                toastfy('fail', 'Email já cadastrado')
+            }else{
+                toastfy('fail', 'OPS! Algo deu errado')
+            }
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -64,24 +112,27 @@ const login = async (body) => {
 
         if (request.ok) {
             const response = await request.json();
-            console.log(await response);
-            console.log('LOGIN CONCLUÍDO');
             localStorage.setItem("user", JSON.stringify(response));
-            userTypeVerification()
-            // setTimeout(() => {
-            //   window.location.replace("../user-page/index.html");
-            // }, 1300);
+            toastfy('ok', 'Login bem sucedido!')
+            setTimeout(() => {
+                userTypeVerification()
+            }, 2300);
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            const response = await request.json();
+            if (response.error == 'password invalid!') {
+                toastfy('fail', 'Senha incorreta!')
+            }else if (response.error == 'email invalid!') {
+                toastfy('fail', 'Email não encontrado, verifique a digitação ou faça seu cadastro')
+            }else{
+                toastfy('fail', 'OPS! Algo deu errado')
+            }
         }
-    } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+    } catch (err) {        
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
-const userTypeVerification = async () =>{
+const userTypeVerification = async () => {
     const user = JSON.parse(localStorage.getItem("user"))
     try {
         const request = await fetch('http://localhost:6278/auth/validate_user', {
@@ -94,24 +145,27 @@ const userTypeVerification = async () =>{
             const response = await request.json();
             if (response.is_admin) {
                 setTimeout(() => {
-                  window.location.replace("../admin-page/index.html");
+                    if (window.location.pathname != '/pages/admin-page/index.html') {
+                        window.location.replace("../admin-page/index.html");
+                    }
                 }, 1300);
-            }else{
+            } else {
                 setTimeout(() => {
-                    window.location.replace("../user-page/index.html");
-                  }, 1300);
+                    if (window.location.pathname != '/pages/user-page/index.html') {
+                        window.location.replace("../user-page/index.html");
+                    }
+                }, 1300);
             }
         } else {
             console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
-const getUserProfile = async () =>{
+const getUserProfile = async () => {
     const user = JSON.parse(localStorage.getItem("user"))
     try {
         const request = await fetch('http://localhost:6278/users/profile', {
@@ -124,16 +178,14 @@ const getUserProfile = async () =>{
             const response = await request.json();
             return response
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
-const getUserCoWorkers = async () =>{
+const getUserCoWorkers = async () => {
     const user = JSON.parse(localStorage.getItem("user"))
     try {
         const request = await fetch('http://localhost:6278/users/departments/coworkers', {
@@ -146,12 +198,10 @@ const getUserCoWorkers = async () =>{
             const response = await request.json();
             return response
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -167,15 +217,14 @@ const editProfile = async (body) => {
             body: JSON.stringify(body),
         });
 
-        if (request.ok) {
+        if (request.ok) {            
+            toastfy('ok', 'Dados do usuário atualizados!')
             const response = await request.json();
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -193,14 +242,14 @@ const getCompaniesDepartments = async (comp) => {
             const response = await request.json();
             return response
         } else {
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
-const editDepartment = async (body,id) => {
+const editDepartment = async (body, id) => {
     const user = JSON.parse(localStorage.getItem("user"))
     try {
         const request = await fetch(`http://localhost:6278/departments/${id}`, {
@@ -213,14 +262,13 @@ const editDepartment = async (body,id) => {
         });
 
         if (request.ok) {
+            toastfy('ok', 'Informações do departamento atualizadas!')
             const response = await request.json();
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -237,14 +285,12 @@ const deleteDepartment = async (id) => {
         console.log(request);
         console.log('==');
         if (request.ok) {
-            alert('Departamento excluído')
+            toastfy('ok', 'Departamento removido, usuarios relacionados foram desassociados!')
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -261,14 +307,13 @@ const createDepartment = async (body) => {
         });
 
         if (request.ok) {
+            toastfy('ok', 'Novo departamento criado com sucesso!')
             const response = await request.json();
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -287,12 +332,10 @@ const listUsers = async () => {
             const response = await request.json();
             return response
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -311,12 +354,10 @@ const listUnemployedUsers = async () => {
             const response = await request.json();
             return response
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -332,15 +373,14 @@ const hire = async (body) => {
             body: JSON.stringify(body),
         });
 
-        if (request.ok) {
+        if (request.ok) {            
+            toastfy('ok', 'Usuário contratado!')
             const response = await request.json();
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -356,14 +396,13 @@ const dimiss = async (id) => {
         });
 
         if (request.ok) {
+            toastfy('ok', 'Usuário desligado do departamento!')
             const response = await request.json();
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
@@ -378,19 +417,17 @@ const deleteUser = async (id) => {
             },
         });
         if (request.ok) {
-            alert('Usuário excluído')
+            toastfy('ok', 'Usuário removido!')
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
 
 
-const editUser = async (body,id) => {
+const editUser = async (body, id) => {
     const user = JSON.parse(localStorage.getItem("user"))
     try {
         const request = await fetch(`http://localhost:6278/admin/update_user/${id}`, {
@@ -402,15 +439,23 @@ const editUser = async (body,id) => {
             body: JSON.stringify(body),
         });
 
-        if (request.ok) {
-            const response = await request.json();
-            console.log(response);
+        if (request.ok) {           
+            toastfy('ok', 'Dados do usuário atualizados!')
         } else {
-            console.log(request);
-            alert('Algo deu errado')
+            toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
-        console.log(err);
-        alert('Algo deu errado')
+        toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
+}
+
+const logout = () => {
+    const bttnLogout = document.getElementById('logout-bttn')
+    bttnLogout.addEventListener('click', () => {
+        localStorage.removeItem('user')
+        toastfy('ok', 'Você está saindo, aguardamos seu retorno')
+        setTimeout(() => {
+            window.location.replace("../home/index.html");
+        }, 3300);        
+    })
 }

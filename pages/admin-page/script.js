@@ -2,6 +2,15 @@ const companiesSelect = document.querySelector('#companies-select')
 const main = document.querySelector('main')
 let departmentsList = []
 
+
+const userTypeVerify = async () =>{
+    await userTypeVerification()
+}
+userTypeVerify()
+
+
+logout()
+
 const fillCompanies = async ()=>{
     compList = await getCompanies()
     companiesSelect.innerHTML = ''
@@ -68,9 +77,11 @@ const trackBttnsDepartments = async ()=>{
 const createDepartmentModal = async ()=>{
     const createBttn = document.querySelector('#create-department')
     createBttn.addEventListener('click', async()=>{
+        lockScroll()
         main.insertAdjacentHTML('afterend', `
-            <article id="create-department-modal">
-                <img id="close-create-department" src="../../src/closeBTTN.png" alt="">
+        <article id="create-department-modal" class='modal-container'>
+            <div class='modal-box'>
+                <img class='modal-close' id="close-create-department" src="../../src/closeBTTN.png" alt="">
                 <h2>Criar Departamento</h2>
                 <input type="text" name="name" id="new-department-name" placeholder="Nome do departamento">
                 <input type="text" name="description" id="new-department-description" placeholder="Descrição do departamento">
@@ -78,7 +89,8 @@ const createDepartmentModal = async ()=>{
                     <option value="" disabled selected>Selecionar Empresa</option>
                 </select>
                 <button class="bttn-brand" id="bttn-department-create">Criar o departamento</button>
-            </article>
+            </div>
+        </article>
         `)
         const createDepartmentCompaniesSelect = document.querySelector('#create-department-companies-select')
         
@@ -97,6 +109,7 @@ const createDepartmentModal = async ()=>{
 
         createModalClose.addEventListener('click', ()=>{
             createDepartmentModal.remove()
+            unlockScroll()            
         })
         let body = {}
         createDepartmentModalBttn.addEventListener('click', async ()=>{
@@ -106,6 +119,7 @@ const createDepartmentModal = async ()=>{
 
             await createDepartment(body)
             createDepartmentModal.remove()
+            unlockScroll()
             populateDepartments()
         })    
     })       
@@ -115,13 +129,16 @@ createDepartmentModal()
 const editDepartmentModal = async (id)=>{
     let departmentDesc = departmentsList.find(dptmnt => (dptmnt.uuid == id)).description
     main.insertAdjacentHTML('afterend', `
-        <article id="edit-department-modal">
-            <img id="close-edit-department" src="../../src/closeBTTN.png" alt="">
-            <h2>Editar Departamento</h2>
-            <input type="text" name="editing-dpt-description" id="editing-dpt-description" placeholder="Descrição do departamento">
-            <button class="bttn-brand" id="edit-department-save">Salvar Alterações</button>
+        <article class='modal-container' id="edit-department-modal">
+            <div class='modal-box'>
+                <img class='modal-close' id="close-edit-department" src="../../src/closeBTTN.png" alt="">
+                <h2>Editar Departamento</h2>
+                <input type="text" name="editing-dpt-description" id="editing-dpt-description" placeholder="Descrição do departamento">
+                <button class="bttn-brand" id="edit-department-save">Salvar Alterações</button>
+            </div>
         </article>
     `)
+    lockScroll()
 
     let departmentDescEdit = document.getElementById('editing-dpt-description')
     departmentDescEdit.value = departmentDesc
@@ -131,6 +148,7 @@ const editDepartmentModal = async (id)=>{
 
     departmentModalClose.addEventListener('click', ()=>{
         departmentModalEdit.remove()
+        unlockScroll()
     })
     
     let body = {}
@@ -139,6 +157,7 @@ const editDepartmentModal = async (id)=>{
         body = {"description": departmentDescEdit.value}
         editDepartment(body,id)
         departmentModalEdit.remove()
+        unlockScroll()
         if(companiesSelect.value == 'todas'){
             departmentsList = await getCompaniesDepartments('')
         }else{
@@ -151,12 +170,15 @@ const editDepartmentModal = async (id)=>{
 const deleteDepartmentModal = async (id)=>{
     let departmentName = departmentsList.find(dptmnt => (dptmnt.uuid == id)).name
     main.insertAdjacentHTML('afterend', `
-        <article id="delete-department-modal">
-            <img id="close-delete-department" src="../../src/closeBTTN.png" alt="">
-            <h2>Realmente deseja deletar o Departamento ${departmentName} e demitir seus funcionários?</h2>            
-            <button class="bttn-green" id="delete-department-bttn">Confirmar</button>
+        <article class='modal-container' id="delete-department-modal">
+            <div class='modal-box'>
+                <img class='modal-close' id="close-delete-department" src="../../src/closeBTTN.png" alt="">
+                <h2>Realmente deseja deletar o Departamento ${departmentName} e demitir seus funcionários?</h2>            
+                <button class="bttn-green" id="delete-department-bttn">Confirmar</button>
+            </div>
         </article>
     `)
+    lockScroll()
     
     let departmentModalDelete = document.getElementById('delete-department-modal')
     let deleteModalClose = document.getElementById('close-delete-department')
@@ -164,11 +186,13 @@ const deleteDepartmentModal = async (id)=>{
 
     deleteModalClose.addEventListener('click', ()=>{
         departmentModalDelete.remove()
+        unlockScroll()
     })
     
     departmentModalSave.addEventListener('click', async ()=>{
         await deleteDepartment(id)
         departmentModalDelete.remove()
+        unlockScroll()
         populateDepartments()
     })    
 }
@@ -178,25 +202,28 @@ const manageDepartment = async (id)=>{
     let departmentDesc = departmentsList.find(dptmnt => (dptmnt.uuid == id)).description
     let departmentCompanie = departmentsList.find(dptmnt => (dptmnt.uuid == id)).companies.name
     main.insertAdjacentHTML('afterend', `
-        <article id="manage-department-modal">
-            <img id="close-manage-department" src="../../src/closeBTTN.png" alt="">
-            <h2>${departmentName}</h2>
-            <span>
-            <div id='department-info'>
-                <h4>${departmentDesc}</h4>
-                <h5>${departmentCompanie}</h5>
+        <article class='modal-container' id="manage-department-modal">
+            <div class='modal-box'>
+                <img class='modal-close' id="close-manage-department" src="../../src/closeBTTN.png" alt="">
+                <h2>${departmentName}</h2>
+                <span>
+                    <div id='department-info'>
+                        <h4>${departmentDesc}</h4>
+                        <h5>${departmentCompanie}</h5>
+                    </div>
+                    <asside>
+                        <select name="users" id="hire-user-select">
+                            <option value="" disabled selected>Selecionar Usuário</option>
+                        </select>
+                        <button class="bttn-green" id='hire-bttn'>Contratar</button>
+                    </asside>            
+                </span>
+                <section id='department-employees'>
+                </section>
             </div>
-            <asside>
-                <select name="users" id="hire-user-select">
-                        <option value="" disabled selected>Selecionar Usuário</option>
-                </select>
-                <button class="bttn-green" id='hire-bttn'>Contratar</button>
-            </asside>            
-            </span>
-            <section id='department-employees'>
-            </section>
         </article>
     `)
+    lockScroll()
     let unemployedUsers = await listUnemployedUsers()
     const hireList = document.querySelector("#hire-user-select")
     unemployedUsers.map(user => {
@@ -220,6 +247,7 @@ const manageDepartment = async (id)=>{
     
     manageModalClose.addEventListener('click', ()=>{        
         manageDepartmentModal.remove()
+        unlockScroll()
     })
     
     getManageDepartmentEmployers(id)
@@ -230,7 +258,7 @@ const getManageDepartmentEmployers = async (id)=>{
     const departamentEmployesSection = document.getElementById('department-employees')
     let departmentCompanie = departmentsList.find(dptmnt => (dptmnt.uuid == id)).companies.name
     let usersFromDepartment = usersList.filter(user => user.department_uuid == id)
-    usersFromDepartment.innerHTML = ''
+    departamentEmployesSection.innerHTML = ''
     usersFromDepartment.map(user =>{
         departamentEmployesSection.insertAdjacentHTML('beforeend', `
             <div class='employe-card'>
@@ -308,12 +336,15 @@ const trackBttnsUsers = async ()=>{
 
 const deleteUserModal = async (id, userName)=>{
     main.insertAdjacentHTML('afterend', `
-        <article id="delete-user-modal">
-            <img id="close-delete-user" src="../../src/closeBTTN.png" alt="">
-            <h2>Realmente deseja remover o usuário ${userName}?</h2>            
-            <button class="bttn-green" id="delete-user-bttn">Deletar</button>
+        <article class='modal-container' id="delete-user-modal">
+            <div class='modal-box'>
+                <img class='modal-close' id="close-delete-user" src="../../src/closeBTTN.png" alt="">
+                <h2>Realmente deseja remover o usuário ${userName}?</h2>            
+                <button class="bttn-green" id="delete-user-bttn">Deletar</button>
+            </div>
         </article>
     `)
+    lockScroll()
     
     let userModalDelete = document.getElementById('delete-user-modal')
     let deleteUserModalClose = document.getElementById('close-delete-user')
@@ -321,6 +352,7 @@ const deleteUserModal = async (id, userName)=>{
 
     deleteUserModalClose.addEventListener('click', ()=>{
         userModalDelete.remove()
+        unlockScroll()
     })
     
     deleteUserConfirm.addEventListener('click', async ()=>{
@@ -328,31 +360,35 @@ const deleteUserModal = async (id, userName)=>{
         await populateDepartments()
         populateAllUsers()
         userModalDelete.remove()
+        unlockScroll()
     })    
     
 }
 
 const editUserModal = async (id)=>{
     main.insertAdjacentHTML('afterend', `
-        <article id="edit-user-modal">
-            <img id="close-edit-user" src="../../src/closeBTTN.png" alt="">
-            <h2>Editar Usuário</h2>
-            <select data-name="kind_of_work" id="edit-user-kind-of-work">
-                <option value="" disabled selected>Selecionar modalidade de trabalho</option>
-                <option value="HomeOffice">HomeOffice</option>
-                <option value="Hibrido">Hibrido</option>
-                <option value="Presencial">Presencial</option>
-            </select>            
-            <select data-name="professional_level" id="edit-user-professional-level">
-                <option value="" disabled selected>Selecionar nível profissional</option>
-                <option value="estágio">Estagio</option>
-                <option value="júnior">Júnior</option>
-                <option value="sênior">Sênior</option>
-                <option value="pleno">Pleno</option>
-            </select>            
-            <button class="bttn-brand" id="edit-user-bttn">Salvar Alterações</button>
+        <article class='modal-container' id="edit-user-modal">
+            <div class='modal-box'>
+                <img class='modal-close' id="close-edit-user" src="../../src/closeBTTN.png" alt="">
+                <h2>Editar Usuário</h2>
+                <select data-name="kind_of_work" id="edit-user-kind-of-work">
+                    <option value="" disabled selected>Selecionar modalidade de trabalho</option>
+                    <option value="home office">HomeOffice</option>
+                    <option value="hibrido">Hibrido</option>
+                    <option value="presencial">Presencial</option>
+                </select>            
+                <select data-name="professional_level" id="edit-user-professional-level">
+                    <option value="" disabled selected>Selecionar nível profissional</option>
+                    <option value="estágio">Estagio</option>
+                    <option value="júnior">Júnior</option>
+                    <option value="sênior">Sênior</option>
+                    <option value="pleno">Pleno</option>
+                </select>            
+                <button class="bttn-brand" id="edit-user-bttn">Salvar Alterações</button>
+            </div>
         </article>
     `)
+    lockScroll()
     
     let editUserModal = document.getElementById('edit-user-modal')
     let editUserModalClose = document.getElementById('close-edit-user')
@@ -360,17 +396,19 @@ const editUserModal = async (id)=>{
 
     editUserModalClose.addEventListener('click', ()=>{
         editUserModal.remove()
+        unlockScroll()
     })
     const kindOfWork = document.getElementById('edit-user-kind-of-work')
     const professionalLevel = document.getElementById('edit-user-professional-level')
     
     editUserConfirm.addEventListener('click', async ()=>{
         let body = {}
-        body["kindofwork"] = kindOfWork.value
+        body["kind_of_work"] = kindOfWork.value
         body["professional_level"] = professionalLevel.value
         console.log(body);
         await editUser(body, id)
         editUserModal.remove()
+        unlockScroll()
         await populateDepartments()
         populateAllUsers()
     })

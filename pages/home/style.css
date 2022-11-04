@@ -1,0 +1,145 @@
+#companies-list-box {
+    display: flex;
+    flex-direction: column;
+}
+
+#comapanies-list-header {
+    background-color: var(--brand100);
+    color: var(--white);
+    display: flex;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+}
+
+#comapanies-list-header h4 {
+    position: absolute;
+    justify-self: center;    
+    z-index: 0;
+}
+
+#bttn-sector-list { 
+    z-index: 0;
+    position: relative;
+    left: 35vw;
+    display: flex;
+    justify-self: flex-end;
+}
+
+#sectors-list {
+    flex-direction: column;
+    position: relative;
+    top: 2px;
+    left: 0vw;
+    background-color: var(--brand100);
+    color: var(--white);
+}
+
+#sectors-list li {
+    padding: 7px 13px;
+    border-bottom: 1px solid var(--black);
+    ;
+}
+
+#sectors-list li:hover {
+    background-color: var(--brand0);
+}
+
+#companies-list {
+    display: flex;
+    background-color: #F8F8F8;
+    padding: 25px 20px 42px 20px;
+    overflow-x: scroll;
+    gap: 30px;
+}
+
+#companies-list li {
+    overflow: hidden;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    min-width: 270px;
+    max-height: 250px;
+    height: fit-content;
+    padding: 25px 20px 23px 20px;
+    overflow-x: scroll;
+    border-bottom: 1px solid var(--brand100);
+}
+
+#companies-list li h3 {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 73px;
+}
+
+#companies-list li p {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 43px;
+}
+
+#companies-list li h5 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.4px;
+    width: fit-content;
+    padding: 7px 13px;
+    display: flex;
+    color: var(--brand100);
+    border: 1px solid var(--brand100);
+    border-radius: 255px;
+}
+
+@media(max-width:800px) {
+    #homepage-img {
+        display: none;
+    }
+
+}
+
+@media(min-width:800px) {
+    main {
+        display: flex;
+        max-width: 100%;
+        overflow: hidden;
+        justify-content: space-between;
+    }
+
+    #companies-list-box {
+        width: 50%;
+        max-height: 85vh;
+    }
+
+    #homepage-img {
+        max-width: 40vw;
+        width: 40vw;
+    }
+
+    #homepage-img img {
+        width: 100%;
+    }
+
+    #bttn-sector-list {
+        left: 15vw;
+    }
+    #companies-list{
+        flex-direction: column;
+        overflow: scroll;
+    }
+    #companies-list li{
+        min-height: 170px;
+    }
+    #companies-list li h3 {
+        margin-bottom: 33px;
+    }
+    #companies-list li p {
+        margin-bottom: 13px;
+    }
+    #comapanies-list-header{        
+    min-height: 52px;
+    }
+}
+
+.hide {
+    display: none;
+}

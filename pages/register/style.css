@@ -1,0 +1,51 @@
+body{
+    background-image: url('../../src/background-img.png');
+    background-size: auto;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+#register-form-box{
+    margin: 90px 7px 0 7px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 400px;
+    padding: 30px 25px;
+}
+
+h1{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 60px;
+    max-width: 100%;
+    margin-bottom: 13px;
+}
+
+input, select{
+    padding: 0 13px;
+    background-color: var(--white);
+    height: 52px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#register-form{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+#register-bttn{
+    height: 52px;
+    margin-bottom: 13px;
+}
+
+#home-bttn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+}

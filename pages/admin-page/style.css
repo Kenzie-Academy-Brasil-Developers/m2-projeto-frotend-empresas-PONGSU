@@ -1,0 +1,356 @@
+header span {    
+    min-width: 100%;
+}
+header{
+    margin-bottom: 50px;
+}
+
+#departments-section{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#departments-header{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#departments-header h3{       
+font-weight: 700;
+font-size: 21px;
+line-height: 36px;
+}
+
+
+#departments-header select{
+    padding-left: 7px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    height: 22px;
+}
+
+#departments-header button{
+    background-color: var(--brand100);
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 0 23px 0 13px;
+    color: var(--white);
+    border: none;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    height: 40px;
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+#departments-list{
+    background-color: #F8F8F8;
+    padding: 20px 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    max-height: 280px;
+    overflow-y: scroll;
+}
+
+#departments-list li{
+    background-color: var(--white);
+    width: 270px;
+    padding: 13px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    border-bottom: 1px solid #4200FF;
+}
+
+.department-name{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.department-desc{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.company-name{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.department-bttns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    justify-items: center;
+    margin-top: 15px;
+}
+
+.manage-department, .edit-department, .delete-department{
+    height: 25px;
+}
+
+#users-section{
+    margin-top: 57px;
+    display: flex;
+    flex-direction: column;
+}
+
+#users-section div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 13px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 36px;
+}
+
+#users-list{
+    background-color: #F8F8F8;
+    padding: 20px 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    max-height: 280px;
+    overflow-y: scroll;
+}
+
+#users-list li{
+    background-color: var(--white);
+    width: 270px;
+    padding: 13px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    border-bottom: 1px solid #4200FF;
+}
+
+.user-name{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.user-level{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.user-company{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.user-bttns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-top: 15px;
+}
+
+.user-bttns img{
+    height: 25px;
+}
+
+.modal-container{
+    background-color: rgba(70, 35, 167, 0.356);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    right: 0;    
+    justify-content: center;
+    align-items: center;
+    display: flex;    
+    z-index: 18;
+    overflow: auto;
+}
+
+.modal-box{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding: 40px 30px;
+    background-color: var(--white);
+    width: 400px;
+    gap: 13px;
+}
+
+.modal-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.modal-box h2{
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 60px;
+}
+
+.modal-box form{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-bottom: 13px;
+}
+
+.modal-box input{
+    width: 100%;
+    height: 47px;
+    padding-left: 13px;
+}
+
+.modal-box select{
+    width: 100%;
+    height: 47px;
+    padding-left: 13px;
+}
+
+.modal-box form input{
+    height: 47px;
+    padding-left: 13px;
+}
+
+.modal-box button{
+    width: 100%;
+    height: 47px;
+}
+
+#delete-department-modal div{
+    width: 90vw;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#delete-department-modal div h2{
+    padding: 0 50px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 42px;
+}
+
+#delete-department-modal div button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin-top: 20px;
+}
+
+#delete-user-modal div h2{
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 42px;
+}
+
+#manage-department-modal .modal-box{
+    width: 90vw;
+    max-width: 800px;
+    top: 30px;
+}
+#manage-department-modal div span{
+    display: flex;
+    justify-content: space-between;
+}
+
+#department-info{
+    width: 30%;
+}
+
+#department-info h4{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 13px;
+}
+#department-info h5{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+}
+#manage-department-modal div span asside{
+    min-width: 57%;
+    display: flex;
+    gap: 13px;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#hire-bttn{
+    justify-items: flex-end;
+    width: 45%;
+    min-width: 95px;
+}
+
+#department-employees{
+    background: #F8F8F8;
+    display: flex;
+    overflow: scroll;
+    padding: 29px 23px;
+    gap: 23px;
+}
+
+.employe-card{
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    min-width: 230px;
+    padding: 13px 19px;
+    border-bottom: 1px solid #4200FF;
+}
+.employe-card span{
+    display: flex;
+    flex-direction: column;
+}
+
+.employe-card span h4{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 13px;
+}
+
+.employe-card span p{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 7px;
+}
+
+.dimiss-bttn{
+    max-width: 130px;
+}
+
+
+.hide{
+    display: none;
+}
+
+.flex{
+    display: flex;
+}

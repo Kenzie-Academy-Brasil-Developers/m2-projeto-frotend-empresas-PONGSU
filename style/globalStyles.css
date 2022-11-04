@@ -1,3 +1,140 @@
-.hide{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800&family=Roboto:wght@700&display=swap');
+
+.hide {
     display: none;
+}
+
+* {
+    max-width: 100vw;
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0;
+}
+
+:root {
+    --brand0: #18005a;
+    --brand100: #4200FF;
+    --brand200: rgba(68, 0, 255, 0.808);
+    --brand500: rgba(66, 0, 255, 0.5);
+    --brand700: #5922f0;
+    --brand900: #c3affa;
+    --black: #000;
+    --red: #CE4646;
+    --green: #4BA036;
+    --white: #FFF;
+}
+
+#purple-icon {
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    background-color: rgba(66, 0, 255, 0.5);
+}
+
+.container {
+    padding: 0 7vw;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    -webkit-border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    width: 150px;
+    background-color: var(--brand100);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 150px;
+    background-color: var(--brand100);
+}
+
+
+@media(max-width:450px) {}
+
+#toastfy {
+    color: var(--white);
+    position: absolute;
+    top: 50px;
+    right: 70px;
+    height: 90px;
+    width: fit-content;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 30px;
+    z-index: 19;
+    animation: toltip 4000ms;
+    margin-left: 27px;
+}
+
+#toastfy h4 {
+    max-width: 100%;
+}
+
+.ok {
+    background-color: var(--green);
+}
+
+.fail {
+    background-color: var(--red);
+}
+
+#spiner {
+    animation: loads 20000ms;
+}
+
+.modal-box{
+    animation: modal 1300ms;
+}
+
+@keyframes loads {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(5360deg);
+    }
+}
+
+@keyframes toltip {
+    0% {
+        transform: translate(0%, -80%);
+        opacity: 0;
+    }
+
+    30% {
+        transform: translate(0%, -5%);
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes modal {
+    0% {
+        transform: translate(-70%, 0%);
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
