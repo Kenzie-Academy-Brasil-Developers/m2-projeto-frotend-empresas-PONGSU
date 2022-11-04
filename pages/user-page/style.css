@@ -31,7 +31,7 @@
     height: 23px;
 }
 
-#notWorking-box{
+#notWorking-box {
     background: #F8F8F8;
     border: 1px solid #A8A8A8;
     height: 367px;
@@ -85,7 +85,7 @@
     line-height: 18px;
 }
 
-#edit-profile-modal{
+#edit-profile-modal {
     background-color: rgba(70, 35, 167, 0.356);
     position: absolute;
     top: 0;
@@ -97,20 +97,20 @@
     z-index: 18;
 }
 
-#edit-profile-modal div{
+#edit-profile-modal div {
     position: absolute;
     padding: 40px 30px;
     background-color: var(--white);
     width: 400px;
 }
 
-#close-edit-profile{
+#close-edit-profile {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-#edit-profile-modal div h2{
+#edit-profile-modal div h2 {
     margin-top: -10px;
     margin-bottom: 20px;
     font-weight: 700;
@@ -118,27 +118,27 @@
     line-height: 60px;
 }
 
-#edit-profile-modal div form{
+#edit-profile-modal div form {
     display: flex;
     flex-direction: column;
     gap: 13px;
     margin-bottom: 13px;
 }
 
-#edit-profile-modal div form input{
+#edit-profile-modal div form input {
     height: 47px;
     padding-left: 13px;
 }
 
-#edit-profile-modal div button{
+#edit-profile-modal div button {
     width: 100%;
     height: 47px;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
-.flex{
+.flex {
     display: flex;
 }

@@ -1,12 +1,11 @@
 logout()
 
-const userTypeVerify = async () =>{
+const userTypeVerify = async () => {
     await userTypeVerification()
 }
 userTypeVerify()
 
-
-async function fillUserInfos () {
+async function fillUserInfos() {
     let userProfile = await getUserProfile()
     const userInfos = document.getElementById('user-infos')
     userInfos.innerHTML = ''
@@ -26,7 +25,7 @@ async function fillUserInfos () {
         userDetails.insertAdjacentHTML('beforeend', `
             <p>${userProfile.kind_of_work}</p>
         `)
-    }    
+    }
 }
 fillUserInfos()
 
@@ -34,13 +33,12 @@ async function fillCompAndDepartmentTeam() {
     let coWorkers = [...await getUserCoWorkers()]
     const companieSection = document.getElementById('user-companie-info')
     if (coWorkers.length == 0) {
-        console.log('teste');
         companieSection.insertAdjacentHTML('beforeend', `
         <div id='notWorking-box'>
         <p id='notWorking'>Você ainda não foi contratado</p>
         </div>
         `)
-    }else{
+    } else {
         companieSection.insertAdjacentHTML('beforeend', `
         <div id='companie-section-header'>
             <h2>${coWorkers[0].name} - ${coWorkers[0].description}</h2>
@@ -70,7 +68,7 @@ async function editUserr() {
     const editProfileForm = editProfileModal.querySelector('form')
     const saveEditsBttn = document.getElementById('edit-profile-bttn')
 
-    editIcon.addEventListener('click', ()=>{
+    editIcon.addEventListener('click', () => {
         editProfileModal.classList.remove('hide')
         editProfileModal.classList.add('flex')
         lockScroll()
@@ -78,27 +76,24 @@ async function editUserr() {
     })
 
     saveEditsBttn.addEventListener("click", async (e) => {
-            e.preventDefault()            
-            console.log('teste');
-            const editFormElements = [...editProfileForm.elements]
-            // registerBttn.innerHTML = '<img id="spiner" src="../../src/spinnerspiner.svg" alt="">'
-            // registerBttn.style.height = '40px'
-            const body = {}
-    
-            editFormElements.forEach(async (elem) => {
-                if (elem.tagName == "INPUT" && elem.value != '') {
-                    body[elem.id] = elem.value
-                }
-            })
-            await editProfile(body)
-            fillUserInfos()
-            editProfileModal.classList.add('hide')
-            editProfileModal.classList.remove('flex')
-            unlockScroll()
+        e.preventDefault()
+        const editFormElements = [...editProfileForm.elements]
+        const body = {}
+
+        editFormElements.forEach(async (elem) => {
+            if (elem.tagName == "INPUT" && elem.value != '') {
+                body[elem.id] = elem.value
+            }
         })
+        await editProfile(body)
+        fillUserInfos()
+        editProfileModal.classList.add('hide')
+        editProfileModal.classList.remove('flex')
+        unlockScroll()
+    })
 
 
-    closeModal.addEventListener('click', ()=>{
+    closeModal.addEventListener('click', () => {
         editProfileModal.classList.add('hide')
         editProfileModal.classList.remove('flex')
         unlockScroll()

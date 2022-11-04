@@ -26,6 +26,7 @@ header span {
     gap: 7px;
     background-color: var(--white);
 }
+
 #header-buttons span a {
     z-index: 13;
 
@@ -34,7 +35,6 @@ header span {
 #drop-menu {
     display: none;
 }
-
 
 @media(max-width:450px) {
     #drop-menu {

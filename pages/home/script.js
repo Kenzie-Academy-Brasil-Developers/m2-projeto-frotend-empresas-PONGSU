@@ -16,7 +16,6 @@ async function setSectors() {
     })
 
     const sectorSelects = [...document.querySelectorAll('.sector-select')]
-    console.log(sectorSelects);
     sectorSelects.map(selector => {
         selector.addEventListener('click', async () => {
             sectorList.classList.toggle('hide')

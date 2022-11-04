@@ -1,14 +1,14 @@
-body{
+body {
     background-image: url('../../src/background-img.png');
     background-size: auto;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
 }
 
-#login-form-box{
+#login-form-box {
     margin: 90px 7px 0 7px;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@ main{
     padding: 30px 25px;
 }
 
-h1{
+h1 {
     font-weight: 700;
     font-size: 40px;
     line-height: 60px;
@@ -25,25 +25,25 @@ h1{
     margin-bottom: 13px;
 }
 
-input{
+input {
     padding: 0 13px;
     background-color: var(--white);
     height: 52px;
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-#login-form{
+#login-form {
     display: flex;
     flex-direction: column;
     gap: 13px;
 }
 
-#login-bttn{
+#login-bttn {
     height: 52px;
     margin-bottom: 13px;
 }
 
-#login-form-box h6{
+#login-form-box h6 {
     align-self: center;
     font-weight: 400;
     font-size: 18px;
@@ -51,7 +51,7 @@ input{
     margin-bottom: 13px;
 }
 
-#register-bttn{
+#register-bttn {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -2,16 +2,14 @@ const companiesSelect = document.querySelector('#companies-select')
 const main = document.querySelector('main')
 let departmentsList = []
 
-
-const userTypeVerify = async () =>{
+const userTypeVerify = async () => {
     await userTypeVerification()
 }
 userTypeVerify()
 
-
 logout()
 
-const fillCompanies = async ()=>{
+const fillCompanies = async () => {
     compList = await getCompanies()
     companiesSelect.innerHTML = ''
     companiesSelect.insertAdjacentHTML('beforeend', `
@@ -22,11 +20,11 @@ const fillCompanies = async ()=>{
         <option value="${comp.uuid}">${comp.name}</option>
         `)
     })
-    
-    companiesSelect.addEventListener('change', async ()=>{
+
+    companiesSelect.addEventListener('change', async () => {
         populateDepartments()
         populateAllUsers()
-    })     
+    })
     populateDepartments()
     populateAllUsers()
 }
@@ -34,11 +32,10 @@ fillCompanies()
 
 const departmentsSection = document.getElementById('departments-list')
 
-const populateDepartments = async ()=>{   
-    console.log(companiesSelect.value);
-    if(companiesSelect.value == 'todas'){
+const populateDepartments = async () => {
+    if (companiesSelect.value == 'todas') {
         departmentsList = await getCompaniesDepartments('')
-    }else{
+    } else {
         departmentsList = await getCompaniesDepartments(`/${companiesSelect.value}`)
     }
     departmentsSection.innerHTML = ''
@@ -59,24 +56,24 @@ const populateDepartments = async ()=>{
     trackBttnsDepartments()
 }
 
-const trackBttnsDepartments = async ()=>{
+const trackBttnsDepartments = async () => {
     const departmentsBttns = [...departmentsSection.querySelectorAll('img')]
     departmentsBttns.map(bttn => {
-        bttn.addEventListener('click', ()=>{
+        bttn.addEventListener('click', () => {
             if (bttn.id[0] == 'm') {
                 manageDepartment(bttn.id.slice(7));
-            }else if (bttn.id[0] == 'e') {
+            } else if (bttn.id[0] == 'e') {
                 editDepartmentModal(bttn.id.slice(5))
-            }else if (bttn.id[0] == 'd') {
+            } else if (bttn.id[0] == 'd') {
                 deleteDepartmentModal(bttn.id.slice(7))
             }
         })
     })
 }
 
-const createDepartmentModal = async ()=>{
+const createDepartmentModal = async () => {
     const createBttn = document.querySelector('#create-department')
-    createBttn.addEventListener('click', async()=>{
+    createBttn.addEventListener('click', async () => {
         lockScroll()
         main.insertAdjacentHTML('afterend', `
         <article id="create-department-modal" class='modal-container'>
@@ -93,7 +90,7 @@ const createDepartmentModal = async ()=>{
         </article>
         `)
         const createDepartmentCompaniesSelect = document.querySelector('#create-department-companies-select')
-        
+
         compList.map(comp => {
             createDepartmentCompaniesSelect.insertAdjacentHTML('beforeend', `
             <option value="${comp.uuid}">${comp.name}</option>
@@ -107,26 +104,26 @@ const createDepartmentModal = async ()=>{
         let newDepartmentDesc = document.querySelector("#new-department-description")
 
 
-        createModalClose.addEventListener('click', ()=>{
+        createModalClose.addEventListener('click', () => {
             createDepartmentModal.remove()
-            unlockScroll()            
+            unlockScroll()
         })
         let body = {}
-        createDepartmentModalBttn.addEventListener('click', async ()=>{
-            body[newDepartmentName.name] = newDepartmentName.value            
-            body[newDepartmentDesc.name] = newDepartmentDesc.value            
+        createDepartmentModalBttn.addEventListener('click', async () => {
+            body[newDepartmentName.name] = newDepartmentName.value
+            body[newDepartmentDesc.name] = newDepartmentDesc.value
             body['company_uuid'] = createDepartmentCompaniesSelect.value
 
             await createDepartment(body)
             createDepartmentModal.remove()
             unlockScroll()
             populateDepartments()
-        })    
-    })       
+        })
+    })
 }
 createDepartmentModal()
 
-const editDepartmentModal = async (id)=>{
+const editDepartmentModal = async (id) => {
     let departmentDesc = departmentsList.find(dptmnt => (dptmnt.uuid == id)).description
     main.insertAdjacentHTML('afterend', `
         <article class='modal-container' id="edit-department-modal">
@@ -146,28 +143,28 @@ const editDepartmentModal = async (id)=>{
     let departmentModalClose = document.getElementById('close-edit-department')
     let departmentModalSave = document.getElementById('edit-department-save')
 
-    departmentModalClose.addEventListener('click', ()=>{
+    departmentModalClose.addEventListener('click', () => {
         departmentModalEdit.remove()
         unlockScroll()
     })
-    
+
     let body = {}
 
-    departmentModalSave.addEventListener('click', async ()=>{
-        body = {"description": departmentDescEdit.value}
-        editDepartment(body,id)
+    departmentModalSave.addEventListener('click', async () => {
+        body = { "description": departmentDescEdit.value }
+        editDepartment(body, id)
         departmentModalEdit.remove()
         unlockScroll()
-        if(companiesSelect.value == 'todas'){
+        if (companiesSelect.value == 'todas') {
             departmentsList = await getCompaniesDepartments('')
-        }else{
+        } else {
             departmentsList = await getCompaniesDepartments(`/${companiesSelect.value}`)
         }
         populateDepartments()
     })
 }
 
-const deleteDepartmentModal = async (id)=>{
+const deleteDepartmentModal = async (id) => {
     let departmentName = departmentsList.find(dptmnt => (dptmnt.uuid == id)).name
     main.insertAdjacentHTML('afterend', `
         <article class='modal-container' id="delete-department-modal">
@@ -179,25 +176,25 @@ const deleteDepartmentModal = async (id)=>{
         </article>
     `)
     lockScroll()
-    
+
     let departmentModalDelete = document.getElementById('delete-department-modal')
     let deleteModalClose = document.getElementById('close-delete-department')
     let departmentModalSave = document.getElementById('delete-department-bttn')
 
-    deleteModalClose.addEventListener('click', ()=>{
+    deleteModalClose.addEventListener('click', () => {
         departmentModalDelete.remove()
         unlockScroll()
     })
-    
-    departmentModalSave.addEventListener('click', async ()=>{
+
+    departmentModalSave.addEventListener('click', async () => {
         await deleteDepartment(id)
         departmentModalDelete.remove()
         unlockScroll()
         populateDepartments()
-    })    
+    })
 }
 
-const manageDepartment = async (id)=>{
+const manageDepartment = async (id) => {
     let departmentName = departmentsList.find(dptmnt => (dptmnt.uuid == id)).name
     let departmentDesc = departmentsList.find(dptmnt => (dptmnt.uuid == id)).description
     let departmentCompanie = departmentsList.find(dptmnt => (dptmnt.uuid == id)).companies.name
@@ -233,33 +230,33 @@ const manageDepartment = async (id)=>{
     })
     let hireBttn = document.getElementById('hire-bttn')
     let listNames = [...hireList.querySelectorAll('option')]
-    hireBttn.addEventListener('click', async ()=>{
+    hireBttn.addEventListener('click', async () => {
         let body = {}
         body['user_uuid'] = hireList.value
         body['department_uuid'] = id
-        await hire(body)        
+        await hire(body)
         getManageDepartmentEmployers(id)
         listNames.find(usr => (usr.value == hireList.value)).remove()
     })
 
     let manageDepartmentModal = document.getElementById('manage-department-modal')
     let manageModalClose = document.getElementById('close-manage-department')
-    
-    manageModalClose.addEventListener('click', ()=>{        
+
+    manageModalClose.addEventListener('click', () => {
         manageDepartmentModal.remove()
         unlockScroll()
     })
-    
+
     getManageDepartmentEmployers(id)
 }
 
-const getManageDepartmentEmployers = async (id)=>{
+const getManageDepartmentEmployers = async (id) => {
     const usersList = await listUsers()
     const departamentEmployesSection = document.getElementById('department-employees')
     let departmentCompanie = departmentsList.find(dptmnt => (dptmnt.uuid == id)).companies.name
     let usersFromDepartment = usersList.filter(user => user.department_uuid == id)
     departamentEmployesSection.innerHTML = ''
-    usersFromDepartment.map(user =>{
+    usersFromDepartment.map(user => {
         departamentEmployesSection.insertAdjacentHTML('beforeend', `
             <div class='employe-card'>
                 <span>
@@ -275,22 +272,22 @@ const getManageDepartmentEmployers = async (id)=>{
     let manageDepartmentModal = document.getElementById('manage-department-modal')
     const dimissBttn = [...document.querySelectorAll('.dimiss-bttn')]
 
-    dimissBttn.map(bttn =>{
-        bttn.addEventListener('click', async()=>{
+    dimissBttn.map(bttn => {
+        bttn.addEventListener('click', async () => {
             dimiss(bttn.id.slice(7))
             manageDepartmentModal.remove()
             manageDepartment(id)
         })
-    })    
+    })
 }
 
 let usersList = document.getElementById('users-list')
 
-const populateAllUsers = async ()=>{
+const populateAllUsers = async () => {
     const allUsersList = await listUsers()
-    if(companiesSelect.value == 'todas'){
+    if (companiesSelect.value == 'todas') {
         departmentsList = await getCompaniesDepartments('')
-    }else{
+    } else {
         departmentsList = await getCompaniesDepartments(`/${companiesSelect.value}`)
     }
     usersList.innerHTML = ''
@@ -300,7 +297,7 @@ const populateAllUsers = async ()=>{
             let dept = departmentsList.find(dptmnt => (dptmnt.uuid == user.department_uuid))
             if (dept != undefined) {
                 dept = dept.companies.name
-            }else{            
+            } else {
                 dept = "Não Contratado"
             }
             usersList.insertAdjacentHTML('beforeend', `
@@ -312,29 +309,26 @@ const populateAllUsers = async ()=>{
                     <img id='edit-${user.uuid}' src="../../src/edit-icon.png" alt="">
                     <img data-name='${user.username}' id='delete-${user.uuid}' src="../../src/deleete-icon.svg" alt="">
                 </div>
-            </li> `)            
+            </li> `)
         }
     })
     trackBttnsUsers()
 }
 
-
-const trackBttnsUsers = async ()=>{
+const trackBttnsUsers = async () => {
     const usersBttns = [...usersList.querySelectorAll('img')]
     usersBttns.map(bttn => {
-        bttn.addEventListener('click', ()=>{
+        bttn.addEventListener('click', () => {
             if (bttn.id[0] == 'e') {
                 editUserModal(bttn.id.slice(5))
-            }else if (bttn.id[0] == 'd') {
+            } else if (bttn.id[0] == 'd') {
                 deleteUserModal(bttn.id.slice(7), bttn.getAttribute('data-name'))
             }
         })
     })
 }
 
-
-
-const deleteUserModal = async (id, userName)=>{
+const deleteUserModal = async (id, userName) => {
     main.insertAdjacentHTML('afterend', `
         <article class='modal-container' id="delete-user-modal">
             <div class='modal-box'>
@@ -345,27 +339,27 @@ const deleteUserModal = async (id, userName)=>{
         </article>
     `)
     lockScroll()
-    
+
     let userModalDelete = document.getElementById('delete-user-modal')
     let deleteUserModalClose = document.getElementById('close-delete-user')
     let deleteUserConfirm = document.getElementById('delete-user-bttn')
 
-    deleteUserModalClose.addEventListener('click', ()=>{
+    deleteUserModalClose.addEventListener('click', () => {
         userModalDelete.remove()
         unlockScroll()
     })
-    
-    deleteUserConfirm.addEventListener('click', async ()=>{
+
+    deleteUserConfirm.addEventListener('click', async () => {
         await deleteUser(id)
         await populateDepartments()
         populateAllUsers()
         userModalDelete.remove()
         unlockScroll()
-    })    
-    
+    })
+
 }
 
-const editUserModal = async (id)=>{
+const editUserModal = async (id) => {
     main.insertAdjacentHTML('afterend', `
         <article class='modal-container' id="edit-user-modal">
             <div class='modal-box'>
@@ -389,28 +383,26 @@ const editUserModal = async (id)=>{
         </article>
     `)
     lockScroll()
-    
+
     let editUserModal = document.getElementById('edit-user-modal')
     let editUserModalClose = document.getElementById('close-edit-user')
     let editUserConfirm = document.getElementById('edit-user-bttn')
 
-    editUserModalClose.addEventListener('click', ()=>{
+    editUserModalClose.addEventListener('click', () => {
         editUserModal.remove()
         unlockScroll()
     })
     const kindOfWork = document.getElementById('edit-user-kind-of-work')
     const professionalLevel = document.getElementById('edit-user-professional-level')
-    
-    editUserConfirm.addEventListener('click', async ()=>{
+
+    editUserConfirm.addEventListener('click', async () => {
         let body = {}
         body["kind_of_work"] = kindOfWork.value
         body["professional_level"] = professionalLevel.value
-        console.log(body);
         await editUser(body, id)
         editUserModal.remove()
         unlockScroll()
         await populateDepartments()
         populateAllUsers()
     })
-
 }

@@ -12,7 +12,7 @@ const getSectors = async () => {
         });
 
         if (request.ok) {
-            const response = await request.json();            
+            const response = await request.json();
             sectors = response
             return sectors
         } else {
@@ -22,7 +22,6 @@ const getSectors = async () => {
         toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
-
 
 const getCompanies = async () => {
     try {
@@ -45,7 +44,6 @@ const getCompanies = async () => {
         toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
-
 getCompanies()
 
 const getCompaniesBySector = async (sector) => {
@@ -88,10 +86,9 @@ const registerUser = async (body) => {
             }, 4300);
         } else {
             const response = await request.json();
-            console.log(response.error);
             if (response.error == 'email alread exists!') {
                 toastfy('fail', 'Email já cadastrado')
-            }else{
+            } else {
                 toastfy('fail', 'OPS! Algo deu errado')
             }
         }
@@ -121,13 +118,13 @@ const login = async (body) => {
             const response = await request.json();
             if (response.error == 'password invalid!') {
                 toastfy('fail', 'Senha incorreta!')
-            }else if (response.error == 'email invalid!') {
+            } else if (response.error == 'email invalid!') {
                 toastfy('fail', 'Email não encontrado, verifique a digitação ou faça seu cadastro')
-            }else{
+            } else {
                 toastfy('fail', 'OPS! Algo deu errado')
             }
         }
-    } catch (err) {        
+    } catch (err) {
         toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
@@ -157,7 +154,6 @@ const userTypeVerification = async () => {
                 }, 1300);
             }
         } else {
-            console.log(request);
             toastfy('fail', 'OPS! Algo deu errado')
         }
     } catch (err) {
@@ -217,7 +213,7 @@ const editProfile = async (body) => {
             body: JSON.stringify(body),
         });
 
-        if (request.ok) {            
+        if (request.ok) {
             toastfy('ok', 'Dados do usuário atualizados!')
             const response = await request.json();
         } else {
@@ -281,9 +277,6 @@ const deleteDepartment = async (id) => {
                 Authorization: `Bearer ${user.token}`,
             },
         });
-        console.log('==');
-        console.log(request);
-        console.log('==');
         if (request.ok) {
             toastfy('ok', 'Departamento removido, usuarios relacionados foram desassociados!')
         } else {
@@ -373,7 +366,7 @@ const hire = async (body) => {
             body: JSON.stringify(body),
         });
 
-        if (request.ok) {            
+        if (request.ok) {
             toastfy('ok', 'Usuário contratado!')
             const response = await request.json();
         } else {
@@ -383,7 +376,6 @@ const hire = async (body) => {
         toastfy('fail', `Falha na comunicação com o servidor, caso persista contate os administradores`)
     }
 }
-
 
 const dimiss = async (id) => {
     const user = JSON.parse(localStorage.getItem("user"))
@@ -406,7 +398,6 @@ const dimiss = async (id) => {
     }
 }
 
-
 const deleteUser = async (id) => {
     const user = JSON.parse(localStorage.getItem("user"))
     try {
@@ -426,7 +417,6 @@ const deleteUser = async (id) => {
     }
 }
 
-
 const editUser = async (body, id) => {
     const user = JSON.parse(localStorage.getItem("user"))
     try {
@@ -439,7 +429,7 @@ const editUser = async (body, id) => {
             body: JSON.stringify(body),
         });
 
-        if (request.ok) {           
+        if (request.ok) {
             toastfy('ok', 'Dados do usuário atualizados!')
         } else {
             toastfy('fail', 'OPS! Algo deu errado')
@@ -456,6 +446,6 @@ const logout = () => {
         toastfy('ok', 'Você está saindo, aguardamos seu retorno')
         setTimeout(() => {
             window.location.replace("../home/index.html");
-        }, 3300);        
+        }, 3300);
     })
 }

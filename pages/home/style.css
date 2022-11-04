@@ -14,11 +14,11 @@
 
 #comapanies-list-header h4 {
     position: absolute;
-    justify-self: center;    
+    justify-self: center;
     z-index: 0;
 }
 
-#bttn-sector-list { 
+#bttn-sector-list {
     z-index: 0;
     position: relative;
     left: 35vw;
@@ -122,21 +122,26 @@
     #bttn-sector-list {
         left: 15vw;
     }
-    #companies-list{
+
+    #companies-list {
         flex-direction: column;
         overflow: scroll;
     }
-    #companies-list li{
+
+    #companies-list li {
         min-height: 170px;
     }
+
     #companies-list li h3 {
         margin-bottom: 33px;
     }
+
     #companies-list li p {
         margin-bottom: 13px;
     }
-    #comapanies-list-header{        
-    min-height: 52px;
+
+    #comapanies-list-header {
+        min-height: 52px;
     }
 }
 

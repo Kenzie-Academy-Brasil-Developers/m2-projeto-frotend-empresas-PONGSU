@@ -1,4 +1,4 @@
-.bttn-white, .bttn-brand, .bttn-green, .bttn-red{
+.bttn-white,.bttn-brand,.bttn-green,.bttn-red {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     line-height: 21.09px;
@@ -9,31 +9,32 @@
     justify-content: center;
 }
 
-.bttn-white{
+.bttn-white {
     color: var(--brand100);
     border: 1px solid var(--brand100);
 }
-.bttn-white:hover{
+
+.bttn-white:hover {
     background-color: var(--brand900);
 }
 
-.bttn-brand{
+.bttn-brand {
     color: var(--white);
     background-color: var(--brand100);
     border: 1px solid var(--brand100);
 }
 
-.bttn-brand:hover{
+.bttn-brand:hover {
     background-color: var(--brand200);
 }
 
-.bttn-green{    
+.bttn-green {
     color: var(--white);
     background-color: var(--green);
     border: 1px solid var(--green);
 }
 
-.bttn-red{
+.bttn-red {
     color: var(--red);
     border: 1px solid var(--red);
 }

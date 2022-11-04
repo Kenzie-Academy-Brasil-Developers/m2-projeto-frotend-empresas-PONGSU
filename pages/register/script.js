@@ -3,9 +3,9 @@ const registerBttn = document.getElementById('register-bttn')
 const registerForm = document.querySelector('form')
 const registerFormElements = [...registerForm.elements]
 
-setTimeout(() => {	
+setTimeout(() => {
 	registerForm.reset()
-	}, 30);
+}, 30);
 
 registerBttn.addEventListener("click", async (e) => {
 	// verifyInputs()

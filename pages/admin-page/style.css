@@ -1,17 +1,18 @@
-header span {    
+header span {
     min-width: 100%;
 }
-header{
+
+header {
     margin-bottom: 50px;
 }
 
-#departments-section{
+#departments-section {
     display: flex;
     flex-direction: column;
-    
+
 }
 
-#departments-header{
+#departments-header {
     display: flex;
     flex-wrap: wrap;
     gap: 13px;
@@ -19,14 +20,14 @@ header{
     justify-content: space-between;
 }
 
-#departments-header h3{       
-font-weight: 700;
-font-size: 21px;
-line-height: 36px;
+#departments-header h3 {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 36px;
 }
 
 
-#departments-header select{
+#departments-header select {
     padding-left: 7px;
     font-weight: 400;
     font-size: 14px;
@@ -36,7 +37,7 @@ line-height: 36px;
     height: 22px;
 }
 
-#departments-header button{
+#departments-header button {
     background-color: var(--brand100);
     display: flex;
     align-items: center;
@@ -52,7 +53,7 @@ line-height: 36px;
     margin-bottom: 13px;
 }
 
-#departments-list{
+#departments-list {
     background-color: #F8F8F8;
     padding: 20px 35px;
     display: flex;
@@ -63,7 +64,7 @@ line-height: 36px;
     overflow-y: scroll;
 }
 
-#departments-list li{
+#departments-list li {
     background-color: var(--white);
     width: 270px;
     padding: 13px 13px;
@@ -73,25 +74,25 @@ line-height: 36px;
     border-bottom: 1px solid #4200FF;
 }
 
-.department-name{
+.department-name {
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
 }
 
-.department-desc{
+.department-desc {
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
 }
 
-.company-name{
+.company-name {
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
 }
 
-.department-bttns{
+.department-bttns {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,17 +101,17 @@ line-height: 36px;
     margin-top: 15px;
 }
 
-.manage-department, .edit-department, .delete-department{
+.manage-department,.edit-department,.delete-department {
     height: 25px;
 }
 
-#users-section{
+#users-section {
     margin-top: 57px;
     display: flex;
     flex-direction: column;
 }
 
-#users-section div{
+#users-section div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,7 +121,7 @@ line-height: 36px;
     line-height: 36px;
 }
 
-#users-list{
+#users-list {
     background-color: #F8F8F8;
     padding: 20px 35px;
     display: flex;
@@ -131,7 +132,7 @@ line-height: 36px;
     overflow-y: scroll;
 }
 
-#users-list li{
+#users-list li {
     background-color: var(--white);
     width: 270px;
     padding: 13px 13px;
@@ -141,25 +142,25 @@ line-height: 36px;
     border-bottom: 1px solid #4200FF;
 }
 
-.user-name{
+.user-name {
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
 }
 
-.user-level{
+.user-level {
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
 }
 
-.user-company{
+.user-company {
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
 }
 
-.user-bttns{
+.user-bttns {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -167,25 +168,25 @@ line-height: 36px;
     margin-top: 15px;
 }
 
-.user-bttns img{
+.user-bttns img {
     height: 25px;
 }
 
-.modal-container{
+.modal-container {
     background-color: rgba(70, 35, 167, 0.356);
     position: absolute;
     top: 0;
     width: 100%;
     height: 100vh;
-    right: 0;    
+    right: 0;
     justify-content: center;
     align-items: center;
-    display: flex;    
+    display: flex;
     z-index: 18;
     overflow: auto;
 }
 
-.modal-box{
+.modal-box {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -195,13 +196,13 @@ line-height: 36px;
     gap: 13px;
 }
 
-.modal-close{
+.modal-close {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-.modal-box h2{
+.modal-box h2 {
     margin-top: -10px;
     margin-bottom: 20px;
     font-weight: 700;
@@ -209,36 +210,36 @@ line-height: 36px;
     line-height: 60px;
 }
 
-.modal-box form{
+.modal-box form {
     display: flex;
     flex-direction: column;
     gap: 13px;
     margin-bottom: 13px;
 }
 
-.modal-box input{
+.modal-box input {
     width: 100%;
     height: 47px;
     padding-left: 13px;
 }
 
-.modal-box select{
+.modal-box select {
     width: 100%;
     height: 47px;
     padding-left: 13px;
 }
 
-.modal-box form input{
+.modal-box form input {
     height: 47px;
     padding-left: 13px;
 }
 
-.modal-box button{
+.modal-box button {
     width: 100%;
     height: 47px;
 }
 
-#delete-department-modal div{
+#delete-department-modal div {
     width: 90vw;
     max-width: 800px;
     display: flex;
@@ -246,14 +247,14 @@ line-height: 36px;
     align-items: center;
 }
 
-#delete-department-modal div h2{
+#delete-department-modal div h2 {
     padding: 0 50px;
     font-weight: 700;
     font-size: 25px;
     line-height: 42px;
 }
 
-#delete-department-modal div button{
+#delete-department-modal div button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -261,39 +262,42 @@ line-height: 36px;
     margin-top: 20px;
 }
 
-#delete-user-modal div h2{
+#delete-user-modal div h2 {
     margin-top: 10px;
     font-weight: 700;
     font-size: 25px;
     line-height: 42px;
 }
 
-#manage-department-modal .modal-box{
+#manage-department-modal .modal-box {
     width: 90vw;
     max-width: 800px;
     top: 30px;
 }
-#manage-department-modal div span{
+
+#manage-department-modal div span {
     display: flex;
     justify-content: space-between;
 }
 
-#department-info{
+#department-info {
     width: 30%;
 }
 
-#department-info h4{
+#department-info h4 {
     font-weight: 700;
     font-size: 20px;
     line-height: 30px;
     margin-bottom: 13px;
 }
-#department-info h5{
+
+#department-info h5 {
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
 }
-#manage-department-modal div span asside{
+
+#manage-department-modal div span asside {
     min-width: 57%;
     display: flex;
     gap: 13px;
@@ -301,13 +305,13 @@ line-height: 36px;
     align-items: flex-end;
 }
 
-#hire-bttn{
+#hire-bttn {
     justify-items: flex-end;
     width: 45%;
     min-width: 95px;
 }
 
-#department-employees{
+#department-employees {
     background: #F8F8F8;
     display: flex;
     overflow: scroll;
@@ -315,7 +319,7 @@ line-height: 36px;
     gap: 23px;
 }
 
-.employe-card{
+.employe-card {
     background-color: var(--white);
     display: flex;
     flex-direction: column;
@@ -323,34 +327,35 @@ line-height: 36px;
     padding: 13px 19px;
     border-bottom: 1px solid #4200FF;
 }
-.employe-card span{
+
+.employe-card span {
     display: flex;
     flex-direction: column;
 }
 
-.employe-card span h4{
+.employe-card span h4 {
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 13px;
 }
 
-.employe-card span p{
+.employe-card span p {
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 7px;
 }
 
-.dimiss-bttn{
+.dimiss-bttn {
     max-width: 130px;
 }
 
 
-.hide{
+.hide {
     display: none;
 }
 
-.flex{
+.flex {
     display: flex;
 }
